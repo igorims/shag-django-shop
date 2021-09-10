@@ -1,0 +1,4 @@
+.django_start
+.idea
+datadump.json
+db.sqlite3
