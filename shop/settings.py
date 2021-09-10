@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import os
 
 import django_heroku
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +28,7 @@ SECRET_KEY = 'django-insecure--!9lpwaq#srog&&c)m%c*lbx&)*8ea@!b))blpwncq)5gtzvg3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['shag-django-shop.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -96,17 +98,21 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd5da666m3l695f',
-        'USER': 'yvseytrdpsgtdh',
-        'PASSWORD': 'c8c6f97d46e09abea9977f5616ad09af7efb81183c0fb8103b944f28ffd60ef3',
-        'HOST': 'ec2-54-195-195-81.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
-        'URI': 'postgres://yvseytrdpsgtdh:c8c6f97d46e09abea9977f5616ad09af7efb81183c0fb8103b944f28ffd60ef3@ec2-54-195'
-               '-195-81.eu-west-1.compute.amazonaws.com:5432/d5da666m3l695f',
-    }
+    'default': dj_database_url.config()
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd5da666m3l695f',
+#         'USER': 'yvseytrdpsgtdh',
+#         'PASSWORD': 'c8c6f97d46e09abea9977f5616ad09af7efb81183c0fb8103b944f28ffd60ef3',
+#         'HOST': 'ec2-54-195-195-81.eu-west-1.compute.amazonaws.com',
+#         'PORT': '5432',
+#         'URI': 'postgres://yvseytrdpsgtdh:c8c6f97d46e09abea9977f5616ad09af7efb81183c0fb8103b944f28ffd60ef3@ec2-54-195'
+#                '-195-81.eu-west-1.compute.amazonaws.com:5432/d5da666m3l695f',
+#     }
+# }
 
 
 # Password validation
@@ -146,6 +152,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
